@@ -35,9 +35,6 @@ public class MonsterH : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        speed *= -1;
-        Vector3 newScale = transform.localScale;
-        newScale.x *= -1;
-        transform.localScale = newScale;
+        Flip();
     }
 }
