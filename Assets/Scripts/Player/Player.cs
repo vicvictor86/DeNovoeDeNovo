@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("nextLevel"))
         {
-            GameManager.instance.LoadLevel((OndeEstou.instance.fase + 1).ToString());
+            GameManager.instance.WinLevel((OndeEstou.instance.fase + 1));
         }
 
         if (collision.gameObject.CompareTag("button"))

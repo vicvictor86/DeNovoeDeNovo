@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        PlayerPrefs.DeleteAll();
     }
 
     // Update is called once per frame
@@ -63,8 +62,8 @@ public class GameManager : MonoBehaviour
     {
         if (nextLevel < levelMax)
         {
-            PlayerPrefs.SetInt("Level_" + (nextLevel - 1), 1);
-            SceneManager.LoadScene(nextLevel);
+            PlayerPrefs.SetInt("Level" + (nextLevel - 1), 1);
+            SceneManager.LoadScene(nextLevel.ToString());
         }
     }
 }

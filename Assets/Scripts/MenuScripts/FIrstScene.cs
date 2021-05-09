@@ -12,7 +12,7 @@ public class FIrstScene : MonoBehaviour
     void Start()
     {
         animatorOptions = GameObject.Find("OptionsPane").GetComponent<Animator>();
-        PlayerPrefs.SetInt("Level_1", 1);
+        PlayerPrefs.SetInt("Level1", 1);
     }
 
     // Update is called once per frame
