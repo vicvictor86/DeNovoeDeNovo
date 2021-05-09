@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: 6626bf490d82a2e43a010ead9dddaa0a
+guid: 3809b535f44174f43b74f77f047e04ff
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2753314452097722569
-    second: g_hero_oficial_andand_png_0
+      213: 8698409016668999757
+    second: Raincoat_-_Standing_Still_2_0
   - first:
-      213: 6934569055382995102
-    second: g_hero_oficial_andand_png_1
-  - first:
-      213: -4802797204425368214
-    second: g_hero_oficial_andand_png_2
-  - first:
-      213: 1035668237060589163
-    second: g_hero_oficial_andand_png_3
+      213: 6771371699830906517
+    second: Raincoat_-_Standing_Still_2_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -67,6 +61,8 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -125,13 +121,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: g_hero_oficial_andand_png_0
+      name: Raincoat_-_Standing_Still_2_0
       rect:
         serializedVersion: 2
-        x: 87
-        y: 386
-        width: 204
-        height: 382
+        x: 459
+        y: 1518
+        width: 282
+        height: 663
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,20 +135,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73714cfe7134ac9d0800000000000000
-      internalID: -2753314452097722569
+      spriteID: d405c9d1ae4f6b870800000000000000
+      internalID: 8698409016668999757
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: g_hero_oficial_andand_png_1
+      name: Raincoat_-_Standing_Still_2_1
       rect:
         serializedVersion: 2
-        x: 468
-        y: 384
-        width: 204
-        height: 384
+        x: 459
+        y: 318
+        width: 282
+        height: 653
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,50 +156,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e900580a0d98c3060800000000000000
-      internalID: 6934569055382995102
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: g_hero_oficial_andand_png_2
-      rect:
-        serializedVersion: 2
-        x: 84
-        y: 0
-        width: 205
-        height: 387
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a6d9cfd8369095db0800000000000000
-      internalID: -4802797204425368214
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: g_hero_oficial_andand_png_3
-      rect:
-        serializedVersion: 2
-        x: 464
-        y: 0
-        width: 214
-        height: 385
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b66c62f36ce6f5e00800000000000000
-      internalID: 1035668237060589163
+      spriteID: 59edd8a4faeb8fd50800000000000000
+      internalID: 6771371699830906517
       vertices: []
       indices: 
       edges: []

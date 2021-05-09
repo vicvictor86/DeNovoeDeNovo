@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     private Player player;
     [SerializeField] private bool isPaused = false;
+    private int levelMax = 2;
 
     void Awake()
     {
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        PlayerPrefs.DeleteAll();
     }
 
     // Update is called once per frame
@@ -50,5 +52,19 @@ public class GameManager : MonoBehaviour
         }
         isPaused = !isPaused;
         //Missing UI Pause
+    }
+
+    public void LoadLevel(string level)
+    {
+        SceneManager.LoadScene(level);
+    }
+
+    public void WinLevel(int nextLevel)
+    {
+        if (nextLevel < levelMax)
+        {
+            PlayerPrefs.SetInt("Level_" + (nextLevel - 1), 1);
+            SceneManager.LoadScene(nextLevel);
+        }
     }
 }
