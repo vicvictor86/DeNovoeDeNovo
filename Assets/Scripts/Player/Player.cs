@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public Animator animator;
     public Light2D lightPost;
     public GameObject lampPost;
+    public GameObject button;
 
     [SerializeField] private float speed = 4;
     [SerializeField] private float jumpForce = 270;
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
         //isGround = LayerMask.GetMask("Ground");
 
         lampPost = GameObject.Find("LampPost");
+        button = GameObject.Find("Button");
         lightPost = lampPost.GetComponentInChildren<Light2D>();
     }
 
@@ -231,5 +233,16 @@ public class Player : MonoBehaviour
         {
             SolutionDone();
         }
+        if (collision.gameObject.CompareTag("button"))
+        {
+            button.GetComponent<AudioSource>().Play();
+            lightPost.intensity = 1;
+            lampPost.GetComponent<BoxCollider2D>().enabled = true;
+        }
+    }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(groundCheck.position, 0.5f);
     }
 }
