@@ -50,3 +50,27 @@ MonoBehaviour:
   - levelText: 2
     habilitado: 0
     desbloqueado: 0
+  - levelText: 3
+    habilitado: 0
+    desbloqueado: 0
+  - levelText: 4
+    habilitado: 0
+    desbloqueado: 0
+  - levelText: 5
+    habilitado: 0
+    desbloqueado: 0
+  - levelText: 6
+    habilitado: 0
+    desbloqueado: 0
+  - levelText: 7
+    habilitado: 0
+    desbloqueado: 0
+  - levelText: 8
+    habilitado: 0
+    desbloqueado: 0
+  - levelText: 9
+    habilitado: 0
+    desbloqueado: 0
+  botao: {fileID: 4979331792212056621, guid: 94d68685f7201124c988801ec40e4078, type: 3}
+  localBtn: {fileID: 0}
+  buttonBack: {fileID: 0}

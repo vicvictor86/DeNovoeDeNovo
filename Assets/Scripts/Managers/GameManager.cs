@@ -7,9 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private Player player;
+    [SerializeField] private Player player;
     [SerializeField] private bool isPaused = false;
-    private int levelMax = 2;
+    private int levelMax = 13;
 
     void Awake()
     {
@@ -27,7 +27,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player").GetComponent<Player>();
+       // if(SceneManager.GetActiveScene().buildIndex > 1)
+       // {
+            player = GameObject.FindWithTag("Player").GetComponent<Player>();
+       // }
     }
 
     // Update is called once per frame
@@ -50,7 +53,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
         }
         isPaused = !isPaused;
-        //Missing UI Pause
     }
 
     public void LoadLevel(string level)
@@ -62,7 +64,7 @@ public class GameManager : MonoBehaviour
     {
         if (nextLevel < levelMax)
         {
-            PlayerPrefs.SetInt("Level" + (nextLevel - 1), 1);
+            PlayerPrefs.SetInt("Level" + nextLevel, 1);
             SceneManager.LoadScene(nextLevel.ToString());
         }
     }

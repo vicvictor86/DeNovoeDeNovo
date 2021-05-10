@@ -10,6 +10,7 @@ public class OndeEstou : MonoBehaviour
     public static OndeEstou instance;
 
     public int fase = -1;
+    [SerializeField] private GameObject UiManagerGO = null, GameManagerGo = null, LevelManagerGo = null;
 
     void Awake()
     {
@@ -23,24 +24,27 @@ public class OndeEstou : MonoBehaviour
             Destroy(gameObject);
         }
 
+        //PlayerPrefs.DeleteAll();
         SceneManager.sceneLoaded += VerificaFase;
     }
 
 
     void VerificaFase(Scene cena, LoadSceneMode modo)
     {
+        fase = SceneManager.GetActiveScene().buildIndex;
+        
+        if(fase == 1)
+        {
+            Instantiate(LevelManagerGo);
+        }
+
         //Até o index 1 serão scenes que não são fase(pode mudar isso a qualquer momento, então tem que mudar aqui)
         if(SceneManager.GetActiveScene().buildIndex > 1)
         {
             fase = Int16.Parse(SceneManager.GetActiveScene().name);
+            Instantiate(UiManagerGO);
+            Instantiate(GameManagerGo);
         }
 
-        //Vai ser usado dps quando começar a criar o UImanager e GameManager
-        if (fase != 0 && fase != 1 && fase != 2 && fase != 7)
-        {
-            //Instantiate(UiManagerGO);
-            //Instantiate(GameManagerGo);
-            //Camera.main.projectionMatrix = Matrix4x4.Ortho(-orthoSize * aspect, orthoSize * aspect, -orthoSize, orthoSize, Camera.main.nearClipPlane, Camera.main.farClipPlane);
-        }
     }
 }

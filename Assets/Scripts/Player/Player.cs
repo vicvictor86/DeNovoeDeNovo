@@ -20,7 +20,9 @@ public class Player : MonoBehaviour
 
     [SerializeField]private bool isGrounded = false;
     private bool lookingRight = true;
-  
+
+    private int contador = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,8 +80,31 @@ public class Player : MonoBehaviour
 
     private void MovePlayer()
     {
-        float movimentoH = Input.GetAxis("Horizontal");
+        float movimentoH = 0;
+
+        if (SceneManager.GetActiveScene().buildIndex == 7 || SceneManager.GetActiveScene().buildIndex == 10)
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                movimentoH = 1;
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                movimentoH = -1;
+            }
+        }
+        else
+        {
+            movimentoH = Input.GetAxis("Horizontal");
+        }
+
+        if (Input.GetKey(KeyCode.S) && (SceneManager.GetActiveScene().buildIndex == 8 || SceneManager.GetActiveScene().buildIndex == 10))
+        {
+            rig.AddForce(new Vector2(rig.velocity.x, -12f), ForceMode2D.Force);
+        }
+
         rig.velocity = new Vector2(movimentoH * speed, rig.velocity.y);
+        
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.5f, isGround);
         
         if(movimentoH != 0)
@@ -90,11 +115,12 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("Running", false);
         }
-
-        if((movimentoH > 0 && !lookingRight) || (movimentoH < 0 && lookingRight))
+        
+        if ((movimentoH > 0 && !lookingRight) || (movimentoH < 0 && lookingRight))
         {
             Flip();
-        }    
+        }
+        
     }
 
     private void Flip()
@@ -123,18 +149,87 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("nextLevel"))
         {
+            if (SceneManager.GetActiveScene().buildIndex == 10)
+            {
+                rig.gravityScale = 1;
+                lightPost.intensity = 0.51f;
+                transform.Find("Point Light 2D").GetComponent<Light2D>().intensity = 0;
+                GameObject.Find("Main Camera").GetComponent<Animator>().Play("CameraEnd");
+                return;
+            }
             GameManager.instance.WinLevel((OndeEstou.instance.fase + 1));
         }
 
-        if (collision.gameObject.CompareTag("button"))
-        {
-            lightPost.intensity = 1;
-            lampPost.GetComponent<BoxCollider2D>().enabled = true;
-        }
+        verifySolution(collision);
+    }
+
+    public void EndGame()
+    {
+        lightPost.intensity = 0f;
+        Invoke("BackToStart", 1);
+    }
+
+    void BackToStart()
+    {
+        SceneManager.LoadScene("FirstScene");
     }
 
     public void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, 0.5f);
+    }
+
+    public void SolutionDone()
+    {
+        lightPost.intensity = 1;
+        lampPost.GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    void verifySolution(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("button"))
+        {
+            switch (SceneManager.GetActiveScene().buildIndex)
+            {
+                case 2:
+                    SolutionDone();
+                    break;
+                case 3:
+                    if(GameObject.Find("Main Camera").GetComponent<AudioSource>().mute == true)
+                    {
+                        SolutionDone();
+                    }
+                    break;
+                case 4:
+                    contador++;
+                    print("contei" + contador);
+                    if(contador >= 3)
+                    {
+                        SolutionDone();
+                        contador = 0;
+                    }
+                    break;
+                case 5:
+                    break;
+                case 10:
+                    contador++;
+                    print("contei" + contador);
+                    if (contador >= 3)
+                    {
+                        SolutionDone();
+                        contador = 0;
+                    }
+                    break;
+                default:
+                    SolutionDone();
+                    break;
+            }
+            
+        }
+
+        if (collision.gameObject.CompareTag("highGround"))
+        {
+            SolutionDone();
+        }
     }
 }

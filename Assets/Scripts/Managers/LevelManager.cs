@@ -9,19 +9,6 @@ public class LevelManager : MonoBehaviour
 
     public static LevelManager instance;
 
-    void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     [System.Serializable]
     public class Level
     {
@@ -33,10 +20,14 @@ public class LevelManager : MonoBehaviour
     public List<Level> levelList;
     public GameObject botao;
     public Transform localBtn;
+    public Button buttonBack;
    
     void Start()
     {
         ListaAdd();
+
+        buttonBack = GameObject.Find("BackFirst").GetComponent<Button>();
+        buttonBack.onClick.AddListener(() => FirstScene());
     }
 
     void ListaAdd()
@@ -55,7 +46,13 @@ public class LevelManager : MonoBehaviour
             }
 
             btnNovo.GetComponentInChildren<Text>().text = level.levelText;
-            btnNovo.GetComponentInChildren<Text>().enabled = level.habilitado;
+            btnNovo.GetComponentInChildren<Text>().enabled = true;
+
+            if (!level.habilitado)
+            {
+                btnNovo.GetComponentInChildren<Text>().color = Color.red;
+            }
+
             btnNovo.GetComponent<Button>().interactable = level.habilitado;
 
             //Lógica para acessar as fases
@@ -65,8 +62,18 @@ public class LevelManager : MonoBehaviour
 
     void ClickLevel(string level)
     {
-        GameManager.instance.LoadLevel(level);
+        SceneManager.LoadScene(level);
     }
 
-    
+    public void FirstScene()
+    {
+        SceneManager.LoadScene("FirstScene");
+    }
+
+    public void Awake()
+    {
+        Destroy(GameObject.Find("UIManager(Clone)"));
+        Destroy(GameObject.Find("GameManager(Clone)"));
+        localBtn = GameObject.Find("Canvas").transform.Find("Background");
+    }
 }

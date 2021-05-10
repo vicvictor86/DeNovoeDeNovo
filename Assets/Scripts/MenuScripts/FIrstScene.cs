@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FIrstScene : MonoBehaviour
 {
@@ -33,6 +34,11 @@ public class FIrstScene : MonoBehaviour
             animatorOptions.Play("AnimationOptionPane");
             optionClicked = true;
         }
+    }
+
+    public void LevelScene()
+    {
+        SceneManager.LoadScene("MenuLevels");
     }
 
     public void QuitGame()
