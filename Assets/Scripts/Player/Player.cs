@@ -54,7 +54,6 @@ public class Player : MonoBehaviour
         if (!isGrounded)
         {
             animator.SetBool("Jumping", true);
-            print(animator.GetBool("Jumping"));
 
             if (rig.velocity.y > 0)
             {
@@ -68,7 +67,6 @@ public class Player : MonoBehaviour
         else
         {
             animator.SetBool("Jumping", false);
-            print(animator.GetBool("Jumping"));
         }
     }
 
@@ -142,7 +140,6 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("damage"))
         {
-            print("colidiu");
             TakeDamage();
         }
     }
@@ -197,14 +194,13 @@ public class Player : MonoBehaviour
                     SolutionDone();
                     break;
                 case 3:
-                    if(GameObject.Find("Main Camera").GetComponent<AudioSource>().mute == true)
+                    if(GameObject.Find("MusicBackground").GetComponent<AudioSource>().mute == true)
                     {
                         SolutionDone();
                     }
                     break;
                 case 4:
                     contador++;
-                    print("contei" + contador);
                     if(contador >= 3)
                     {
                         SolutionDone();
@@ -215,7 +211,6 @@ public class Player : MonoBehaviour
                     break;
                 case 10:
                     contador++;
-                    print("contei" + contador);
                     if (contador >= 3)
                     {
                         SolutionDone();
@@ -236,13 +231,6 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("button"))
         {
             button.GetComponent<AudioSource>().Play();
-            lightPost.intensity = 1;
-            lampPost.GetComponent<BoxCollider2D>().enabled = true;
         }
-    }
-
-    public void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(groundCheck.position, 0.5f);
     }
 }

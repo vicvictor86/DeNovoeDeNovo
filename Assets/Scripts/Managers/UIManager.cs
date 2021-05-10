@@ -104,13 +104,13 @@ public class UIManager : MonoBehaviour
         if (isMuted)
         {
             GameObject.Find("PauseOptions").transform.Find("Sound").GetComponent<Image>().sprite = desmute;
-            GameObject.Find("Main Camera").GetComponent<AudioSource>().mute = false;
+            GameObject.Find("MusicBackground").GetComponent<AudioSource>().mute = false;
             isMuted = false;
         }
         else
         {
             GameObject.Find("PauseOptions").transform.Find("Sound").GetComponent<Image>().sprite = mute;
-            GameObject.Find("Main Camera").GetComponent<AudioSource>().mute = true;
+            GameObject.Find("MusicBackground").GetComponent<AudioSource>().mute = true;
             isMuted = true;
         }
     }
