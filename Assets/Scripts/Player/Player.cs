@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S) && (SceneManager.GetActiveScene().buildIndex == 8 || SceneManager.GetActiveScene().buildIndex == 10))
         {
-            rig.AddForce(new Vector2(rig.velocity.x, -12f), ForceMode2D.Force);
+            rig.AddForce(new Vector2(rig.velocity.x, -20f), ForceMode2D.Force);
         }
 
         rig.velocity = new Vector2(movimentoH * speed, rig.velocity.y);
@@ -150,11 +150,17 @@ public class Player : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().buildIndex == 10)
             {
+                GameObject.Find("MusicBackground").GetComponent<AudioSource>().mute = true;
                 rig.gravityScale = 1;
                 lightPost.intensity = 0.51f;
                 transform.Find("Point Light 2D").GetComponent<Light2D>().intensity = 0;
                 GameObject.Find("Main Camera").GetComponent<Animator>().Play("CameraEnd");
                 return;
+            }
+
+            if (SceneManager.GetActiveScene().buildIndex == 4)
+            {
+                GameObject.Find("MusicBackground").GetComponent<AudioSource>().mute = false;
             }
             GameManager.instance.WinLevel((OndeEstou.instance.fase + 1));
         }
